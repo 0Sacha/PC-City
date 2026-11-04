@@ -1,0 +1,133 @@
+{
+  "port": 8765,
+  "frequence_collecte_s": 2,
+  "frequence_disques_s": 30,
+  "frequence_dns_s": 10,
+  "arret_sans_page_s": 180,
+  "duree_min_fermee_s": 10,
+  "delai_veille_s": 300,
+  "demolition_jours": 30,
+  "delabrement_jours": 7,
+
+  "historique_jours": 7,
+  "exclusions_historique": [
+    "keepass.exe", "keepassxc.exe", "bitwarden.exe", "1password.exe", "dashlane.exe",
+    "lastpass.exe", "enpass.exe", "roboform.exe", "nordpass.exe", "proton pass.exe"
+  ],
+
+  "alertes": {
+    "envoi_mo_min": 20,
+    "facteur_habitude": 5,
+    "nuit_debut_h": 0,
+    "nuit_fin_h": 6,
+    "nuit_envoi_mo_min": 5,
+    "ecriture_go_min": 1
+  },
+
+  "seuils_alerte": {
+    "cpu_pct": 50,
+    "ram_pct": 25
+  },
+
+  "autoroutes": {
+    "seuil_ko_s": 1024,
+    "duree_s": 6
+  },
+
+  "electricite": {
+    "repos_w": 9,
+    "max_w": 60
+  },
+
+  "embouteillages": {
+    "disque_debut_pct": 60,
+    "disque_plein_pct": 95,
+    "reseau_debut_pct": 40,
+    "reseau_plein_pct": 80
+  },
+
+  "quartiers": [
+    {
+      "id": "navigateurs",
+      "nom": "Navigateurs",
+      "couleur": "#3FA9E0",
+      "programmes": ["chrome.exe", "msedge.exe", "firefox.exe", "brave.exe", "opera.exe", "vivaldi.exe", "arc.exe"]
+    },
+    {
+      "id": "communication",
+      "nom": "Communication",
+      "couleur": "#3DBE7A",
+      "programmes": ["ms-teams.exe", "teams.exe", "outlook.exe", "olk.exe", "slack.exe", "discord.exe", "zoom.exe", "whatsapp.exe", "signal.exe", "thunderbird.exe", "3cxsoftphone.exe"]
+    },
+    {
+      "id": "bureautique",
+      "nom": "Bureautique",
+      "couleur": "#F2A541",
+      "programmes": ["winword.exe", "excel.exe", "powerpnt.exe", "onenote.exe", "acrord32.exe", "acrobat.exe", "notepad.exe", "soffice.bin", "soffice.exe", "onedrive.exe"]
+    },
+    {
+      "id": "developpement",
+      "nom": "Développement",
+      "couleur": "#E8504F",
+      "programmes": ["code.exe", "devenv.exe", "git.exe", "windowsterminal.exe", "openconsole.exe", "cmd.exe", "powershell.exe", "pwsh.exe", "wsl.exe", "docker desktop.exe", "idea64.exe", "pycharm64.exe", "claude.exe"]
+    },
+    {
+      "id": "multimedia",
+      "nom": "Multimédia et jeux",
+      "couleur": "#9B6BD6",
+      "programmes": ["spotify.exe", "vlc.exe", "steam.exe", "steamwebhelper.exe", "epicgameslauncher.exe", "obs64.exe", "photos.exe", "mspaint.exe"]
+    },
+    {
+      "id": "systeme",
+      "nom": "Zone système",
+      "couleur": "#4C5DA8",
+      "programmes": ["system", "registry", "memory compression", "secure system", "mpdefendercoreservice.exe", "smss.exe", "csrss.exe", "wininit.exe", "winlogon.exe", "services.exe", "lsass.exe", "svchost.exe", "dwm.exe", "fontdrvhost.exe", "spoolsv.exe", "msmpeng.exe", "nissrv.exe", "searchindexer.exe", "searchhost.exe", "runtimebroker.exe", "sihost.exe", "taskhostw.exe", "ctfmon.exe", "explorer.exe", "startmenuexperiencehost.exe", "shellexperiencehost.exe", "textinputhost.exe", "securityhealthservice.exe", "audiodg.exe", "wmiprvse.exe", "dllhost.exe", "lsaiso.exe"]
+    },
+    {
+      "id": "divers",
+      "nom": "Divers",
+      "couleur": "#E77FB0",
+      "programmes": []
+    }
+  ],
+
+  "noms": {
+    "chrome.exe": "Chrome",
+    "msedge.exe": "Edge",
+    "firefox.exe": "Firefox",
+    "ms-teams.exe": "Teams",
+    "teams.exe": "Teams (classique)",
+    "outlook.exe": "Outlook",
+    "olk.exe": "Outlook (nouveau)",
+    "winword.exe": "Word",
+    "excel.exe": "Excel",
+    "powerpnt.exe": "PowerPoint",
+    "onenote.exe": "OneNote",
+    "onedrive.exe": "OneDrive",
+    "notepad.exe": "Bloc-notes",
+    "acrord32.exe": "Acrobat Reader",
+    "code.exe": "VS Code",
+    "devenv.exe": "Visual Studio",
+    "windowsterminal.exe": "Terminal",
+    "cmd.exe": "Invite de commandes",
+    "powershell.exe": "PowerShell",
+    "pwsh.exe": "PowerShell 7",
+    "claude.exe": "Claude",
+    "explorer.exe": "Explorateur Windows",
+    "svchost.exe": "Services Windows",
+    "msmpeng.exe": "Antivirus Defender",
+    "dwm.exe": "Affichage Windows",
+    "searchindexer.exe": "Indexation Windows",
+    "system": "Noyau Windows",
+    "memory compression": "Compression mémoire",
+    "secure system": "Système sécurisé",
+    "arc.exe": "Arc",
+    "3cxsoftphone.exe": "3CX",
+    "spotify.exe": "Spotify",
+    "steam.exe": "Steam"
+  },
+
+  "auxiliaires": ["msedgewebview2.exe", "conhost.exe", "crashpad_handler.exe", "werfault.exe"],
+
+  "interpretes": ["python.exe", "pythonw.exe", "node.exe", "java.exe", "javaw.exe", "dotnet.exe", "ruby.exe", "php.exe"]
+}

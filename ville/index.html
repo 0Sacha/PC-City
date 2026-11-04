@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PC City</title>
+  <link rel="icon" href="icone.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="interface.js"></script>
+</head>
+<body>
+  <canvas id="carte" aria-label="Carte de la ville"></canvas>
+
+  <header id="barre">
+    <div class="mesures">
+      <div class="mesure"><span class="etiquette">CPU</span><span id="m-cpu" class="valeur">–</span></div>
+      <div class="mesure"><span class="etiquette">RAM</span><span id="m-ram" class="valeur">–</span></div>
+      <div class="mesure"><span class="etiquette">Disque</span><span id="m-disque" class="valeur">–</span></div>
+      <div class="mesure"><span class="etiquette">Réseau</span><span id="m-reseau" class="valeur">–</span></div>
+      <div class="mesure"><span class="etiquette">Heure</span><span id="m-heure" class="valeur">–</span></div>
+    </div>
+    <div class="actions">
+      <input id="recherche" type="search" placeholder="Chercher un programme…" autocomplete="off" spellcheck="false">
+      <span id="direct" title="La ville se met à jour toutes les 2 secondes">En direct</span>
+      <button id="b-pause" type="button" title="Figer la ville">⏸ Pause</button>
+      <button id="b-discret" type="button" aria-pressed="false">🙈 Discret</button>
+      <button id="b-recentrer" type="button" title="Vue d'ensemble (Espace)">⌂ Recentrer</button>
+      <button id="b-actualiser" type="button" title="Recharger PC City après une mise à jour, sans fermer la fenêtre">↻ Actualiser</button>
+      <select id="decor" title="Décor : chaque décor dessine et place la ville à sa façon" aria-label="Décor"></select>
+      <button id="b-vue" type="button">🧊 Vue 3D</button>
+      <select id="theme" title="Thème de la ville" aria-label="Thème">
+        <option value="systeme">◐ Thème du système</option>
+        <option value="heure">🕒 Selon l'heure</option>
+        <option value="clair">☀ Clair</option>
+        <option value="sombre">☾ Sombre</option>
+      </select>
+    </div>
+  </header>
+
+  <aside id="detail" hidden>
+    <button id="b-fermer" type="button" aria-label="Fermer">×</button>
+    <div id="detail-contenu"></div>
+  </aside>
+
+  <details id="legende">
+    <summary>Légende</summary>
+    <div id="legende-contenu"></div>
+  </details>
+
+  <div id="infobulle" hidden></div>
+  <div id="message" hidden></div>
+</body>
+</html>

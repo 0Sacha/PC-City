@@ -1,0 +1,5 @@
+donnees/
+vendor/
+__pycache__/
+*.pyc
+releases/*.zip

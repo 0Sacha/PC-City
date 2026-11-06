@@ -3,3 +3,6 @@ vendor/
 __pycache__/
 *.pyc
 releases/*.zip
+build/
+dist/
+*.spec

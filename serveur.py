@@ -24,15 +24,23 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import psutil
 
-DOSSIER = os.path.dirname(os.path.abspath(__file__))
+# Version .exe (PyInstaller) : les fichiers fournis (ville\, config.json d'origine) sont extraits
+# dans un dossier temporaire (sys._MEIPASS) ; donnees\ et config.json restent à côté du .exe.
+EMPAQUETE = getattr(sys, "frozen", False)
+if EMPAQUETE:
+    DOSSIER = os.path.dirname(os.path.abspath(sys.executable))
+    DOSSIER_RESSOURCES = getattr(sys, "_MEIPASS", DOSSIER)
+else:
+    DOSSIER = os.path.dirname(os.path.abspath(__file__))
+    DOSSIER_RESSOURCES = DOSSIER
 # Le Python portable n'ajoute pas le dossier du script aux chemins d'import.
-sys.path.insert(0, DOSSIER)
+sys.path.insert(0, DOSSIER_RESSOURCES)
 
 import icones  # noqa: E402
 from collecteur import Collecteur  # noqa: E402
 from historique import Historique  # noqa: E402
 
-DOSSIER_VILLE = os.path.join(DOSSIER, "ville")
+DOSSIER_VILLE = os.path.join(DOSSIER_RESSOURCES, "ville")
 DOSSIER_DONNEES = os.path.join(DOSSIER, "donnees")
 FICHIER_INSTANCE = os.path.join(DOSSIER_DONNEES, "serveur.json")
 ADRESSE = "127.0.0.1"
@@ -54,7 +62,15 @@ ENTETES_SECURITE = {
 
 
 def charger_config():
-    with open(os.path.join(DOSSIER, "config.json"), encoding="utf-8") as f:
+    fichier = os.path.join(DOSSIER, "config.json")
+    if EMPAQUETE and not os.path.isfile(fichier):
+        # Premier lancement du .exe : on dépose une copie modifiable de config.json à côté.
+        import shutil
+        try:
+            shutil.copyfile(os.path.join(DOSSIER_RESSOURCES, "config.json"), fichier)
+        except OSError:
+            fichier = os.path.join(DOSSIER_RESSOURCES, "config.json")
+    with open(fichier, encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -320,10 +336,17 @@ class Application:
             if self.historique:
                 self.historique.fermer()
             pid =self.navigateur.pid if self.surveiller_navigateur else (self.pid_navigateur or 0)
-            subprocess.Popen(
-                [sys.executable, os.path.abspath(__file__), "--relance", str(self.port), self.jeton, str(pid)],
-                cwd=DOSSIER, creationflags=subprocess.CREATE_NO_WINDOW,
-            )
+            arguments = ["--relance", str(self.port), self.jeton, str(pid)]
+            if EMPAQUETE:
+                # Nouvelle instance indépendante du .exe (sinon elle réutiliserait le dossier
+                # temporaire de celle-ci, effacé à sa fermeture).
+                commande = [sys.executable] + arguments
+                environnement = dict(os.environ, PYINSTALLER_RESET_ENVIRONMENT="1")
+            else:
+                commande = [sys.executable, os.path.abspath(__file__)] + arguments
+                environnement = None
+            subprocess.Popen(commande, cwd=DOSSIER, env=environnement,
+                             creationflags=subprocess.CREATE_NO_WINDOW)
             os._exit(0)
         threading.Thread(target=relancer, daemon=True).start()
 

@@ -11,6 +11,8 @@ La toute première fois, `lancer.bat` lance l'installation (`installer.bat`). El
 
 **Arrêter :** fermez la fenêtre. Le serveur s'arrête tout seul.
 
+**Version .exe :** `PC-City.exe` (page *Releases* du dépôt) fonctionne seul, sans installation ni Internet. Placez-le dans un dossier à lui : il y crée `config.json` et `donnees\` au premier lancement.
+
 ## Lire la ville
 
 | Dans la ville | Sur le PC |
@@ -73,6 +75,11 @@ Un programme inconnu va dans le quartier Divers, ou dans la Zone système s'il f
 - Il ne lit jamais le contenu de vos fichiers, de vos échanges réseau, les titres de vos fenêtres ni les lignes de commande.
 - Les noms des sites contactés sont gardés en mémoire seulement, jamais écrits sur le disque. En partage d'écran, activez le mode discret.
 - Le dossier **`donnees\`** contient le profil de la fenêtre dédiée et `programmes_vus.json` (nom, quartier et date de dernière utilisation de chaque application, effacée après 30 jours). **Ne le partagez pas** et ne placez pas PC City dans un dossier synchronisé (OneDrive…).
+
+## Publier une version .exe
+
+- Sur GitHub : poussez un tag `v…` (`git tag v3.0` puis `git push origin v3.0`). Le workflow *Release .exe* construit `PC-City.exe` sous Windows et l'attache à la release du tag (créée si besoin).
+- En local : double-cliquez sur `construire_exe.bat` (Python requis) ; l'exe arrive dans `dist\`.
 
 ## Désinstaller
 
